@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.local.example
+
+# Next.js
+.next/
+out/
+
+# Testing
+coverage/
+.pytest_cache/
+htmlcov/
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# AI tools
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.cursor/
+.cursorrules
+.cursorignore
+.cursorindexingignore
+AGENTS.md
+.aider*
+.windsurf/
+.windsurfrules
+.codeium/
+.continue/
+.gemini/
+GEMINI.md
+.clinerules
+.roo/
+.specstory/
+.github/copilot-instructions.md
+
+# Supabase
+.supabase/
+
+# Logs
+*.log
+npm-debug.log*

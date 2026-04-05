@@ -1,0 +1,14 @@
+Write a calm, plain-language explanation for this health triage result.
+
+Symptom: {chief_complaint}
+Urgency (determined by rule engine, not AI): {urgency_level}
+Red flags detected: {red_flags}
+Recommended care: {care_option}
+
+Instructions:
+- Write in second person ("your symptoms suggest...")
+- Be honest but calm and reassuring
+- Do NOT diagnose or claim certainty
+- Explain why this urgency level makes sense given what they described
+- Keep it to 2-3 sentences, under 60 words
+- End with what the recommended next step is
