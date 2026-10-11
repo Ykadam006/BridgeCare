@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Stethoscope, FileText, History } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/supabase";
 
 // Same destinations as the header (minus Safety, which is in the menu) — big thumb-sized tabs.
 const TABS = [
@@ -15,6 +17,19 @@ const TABS = [
 
 export function MobileNav() {
   const pathname = usePathname();
+  const [due, setDue] = useState(0);
+
+  // Follow-up reminders that are due now (RLS limits rows to the signed-in user). Re-checked on
+  // navigation so the badge clears after a follow-up is answered.
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return setDue(0);
+      supabase.from("reminders").select("id", { count: "exact", head: true })
+        .eq("done", false).lte("due_at", new Date().toISOString())
+        .then(({ count }) => setDue(count ?? 0));
+    });
+  }, [pathname]);
 
   return (
     <nav
@@ -35,10 +50,16 @@ export function MobileNav() {
                   active ? "text-brand-navy" : "text-[#4b5563]"
                 )}
               >
-                <span className={cn("flex h-8 w-12 items-center justify-center rounded-xl", active && "bg-brand-pale")}>
+                <span className={cn("relative flex h-8 w-12 items-center justify-center rounded-xl", active && "bg-brand-pale")}>
                   <Icon className="h-5 w-5" aria-hidden="true" strokeWidth={active ? 2.5 : 2} />
+                  {href === "/dashboard" && due > 0 && (
+                    <span className="absolute -right-0.5 -top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-amber-600 px-1 text-[11px] font-bold text-white" aria-hidden="true">
+                      {due}
+                    </span>
+                  )}
                 </span>
                 {label}
+                {href === "/dashboard" && due > 0 && <span className="sr-only">, {due} follow-up{due > 1 ? "s" : ""} due</span>}
               </Link>
             </li>
           );

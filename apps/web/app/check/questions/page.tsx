@@ -217,6 +217,7 @@ function QuestionsInner() {
 
       {/* Chat area */}
       <main id="main-content" className="flex-1 flex flex-col mx-auto w-full max-w-2xl px-6 py-6" tabIndex={-1} aria-label="Health check-in conversation">
+        <h1 className="sr-only">Health check-in</h1>
 
         {/* Emergency warning */}
         <AnimatePresence>
@@ -323,17 +324,17 @@ function QuestionsInner() {
       {/* Input */}
       <div className="sticky bottom-0 bg-white border-t border-[#e5e7eb] px-6 pb-6 pt-4">
         <div className="mx-auto max-w-2xl">
-          {/* Quick demo chips — remove before launch */}
-          {messages.length <= 1 && !loading && (
+          {/* Example starters: they fill the box for the user to edit, so nobody files someone else's symptoms */}
+          {messages.length <= 1 && !loading && !input && (
             <div className="flex flex-wrap gap-2 mb-3">
               {ui.demoChips.map((chip) => (
                 <button
                   key={chip}
                   type="button"
-                  onClick={() => send(chip)}
-                  className="text-xs bg-[#f3fbfd] border border-[#90e0ef] text-[#03045e] rounded-full px-3 py-1.5 hover:bg-[#caf0f8] transition-colors"
+                  onClick={() => { setInput(chip); inputRef.current?.focus(); }}
+                  className="text-left text-xs bg-[#f3fbfd] border border-[#90e0ef] text-[#03045e] rounded-2xl px-3 py-2 min-h-[44px] hover:bg-[#caf0f8] transition-colors"
                 >
-                  {chip.length > 40 ? chip.slice(0, 40) + "…" : chip}
+                  {chip}
                 </button>
               ))}
             </div>
@@ -341,6 +342,7 @@ function QuestionsInner() {
 
           <form onSubmit={handleSubmit} className="relative">
             <label htmlFor="symptom-input" className="sr-only">{ui.describeSr}</label>
+            <span id="symptom-input-hint" className="sr-only">{ui.inputAria}</span>
             <textarea
               id="symptom-input"
               ref={inputRef}
@@ -350,13 +352,13 @@ function QuestionsInner() {
               rows={1}
               placeholder={ui.inputPlaceholder}
               className={cn(
-                "w-full rounded-[20px] border bg-white px-4 py-3.5 text-sm text-[#111827] placeholder-[#9ca3af]",
+                "w-full rounded-[20px] border bg-white px-4 py-3.5 text-base text-[#111827] placeholder-[#9ca3af]",
                 "resize-none pr-14 min-h-[52px] max-h-[140px] overflow-auto leading-relaxed",
-                "transition-all duration-[180ms]",
+                "transition duration-[180ms]",
                 "focus:outline-none focus:ring-2 focus:ring-[#0077b6] focus:border-[#0077b6]",
                 "border-[#d1d5db] hover:border-[#00b4d8]"
               )}
-              aria-label={ui.inputAria}
+              aria-describedby="symptom-input-hint"
               onInput={(e) => {
                 const t = e.currentTarget;
                 t.style.height = "auto";
@@ -367,7 +369,7 @@ function QuestionsInner() {
               type="submit"
               disabled={!input.trim() || loading}
               className={cn(
-                "absolute right-3 bottom-3 w-10 h-10 rounded-[14px] flex items-center justify-center transition-all duration-[180ms]",
+                "absolute right-3 bottom-3 w-10 h-10 rounded-[14px] flex items-center justify-center transition duration-[180ms]",
                 input.trim() && !loading
                   ? "bg-[#0077b6] text-white hover:bg-[#03045e] active:scale-90"
                   : "bg-[#f3f4f6] text-[#6b7280]"

@@ -32,12 +32,13 @@ async def root():
 async def health():
     import httpx
     ollama_ok = False
-    try:
-        async with httpx.AsyncClient(timeout=2.0) as client:
-            r = await client.get(f"{settings.OLLAMA_BASE_URL}/api/tags")
-            ollama_ok = r.status_code == 200
-    except Exception:
-        pass
+    if settings.OLLAMA_BASE_URL:
+        try:
+            async with httpx.AsyncClient(timeout=2.0) as client:
+                r = await client.get(f"{settings.OLLAMA_BASE_URL}/api/tags")
+                ollama_ok = r.status_code == 200
+        except Exception:
+            pass
     return {
         "status": "ok",
         "ai_providers": {

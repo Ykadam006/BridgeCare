@@ -5,6 +5,7 @@ from typing import Optional
 class Settings(BaseSettings):
     APP_NAME: str = "BridgeCare API"
     DEBUG: bool = False
+    # override on a host with a JSON list, e.g. CORS_ORIGINS='["https://your-app.vercel.app"]'
     CORS_ORIGINS: list[str] = [
         "http://localhost:3000",
         "http://localhost:3001",
@@ -16,7 +17,7 @@ class Settings(BaseSettings):
     SUPABASE_SERVICE_KEY: str
     DATABASE_URL: str
 
-    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_BASE_URL: Optional[str] = None  # unset on hosts without Ollama, so it's skipped
     OLLAMA_MODEL: str = "llama3"
 
     ANTHROPIC_API_KEY: Optional[str] = None

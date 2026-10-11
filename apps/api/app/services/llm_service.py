@@ -141,6 +141,8 @@ After 4-5 user responses, respond with exactly: [DONE]"""
 
 
 async def _ollama(messages: list[dict]) -> Optional[str]:
+    if not settings.OLLAMA_BASE_URL:
+        return None
     async with httpx.AsyncClient(timeout=30.0) as client:
         r = await client.post(
             f"{settings.OLLAMA_BASE_URL}/api/chat",

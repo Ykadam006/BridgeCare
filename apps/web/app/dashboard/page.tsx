@@ -31,7 +31,7 @@ interface Case {
 }
 
 interface Reminder {
-  id: string; due_at: string; message: string; done: boolean;
+  id: string; due_at: string; message: string; done: boolean; case_id: string | null;
 }
 
 export default function DashboardPage() {
@@ -51,7 +51,7 @@ export default function DashboardPage() {
       const [casesRes, remindersRes] = await Promise.all([
         supabase.from("cases").select("id,created_at,chief_complaint,urgency_level,urgency_label,score")
           .eq("user_id", user.id).order("created_at", { ascending: false }).limit(20),
-        supabase.from("reminders").select("id,due_at,message,done")
+        supabase.from("reminders").select("id,due_at,message,done,case_id")
           .eq("user_id", user.id).eq("done", false).order("due_at", { ascending: true }).limit(5),
       ]);
       setCases(casesRes.data || []);
@@ -246,7 +246,7 @@ export default function DashboardPage() {
                     <Link
                       key={c.id}
                       href={`/results/${c.id}`}
-                      className="flex items-start gap-3 p-3 rounded-[16px] hover:bg-[#f3fbfd] hover:border-[#90e0ef]/30 border border-transparent transition-all"
+                      className="flex items-start gap-3 p-3 rounded-[16px] hover:bg-[#f3fbfd] hover:border-[#90e0ef]/30 border border-transparent transition"
                     >
                       <span className="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1.5" style={{ backgroundColor: URGENCY_COLORS[c.urgency_level] }} aria-hidden="true" />
                       <div className="flex-1 min-w-0">
@@ -283,13 +283,13 @@ export default function DashboardPage() {
               ) : (
                 <div className="space-y-3">
                   {reminders.map((r) => (
-                    <div key={r.id} className="p-3.5 rounded-[16px] bg-amber-50 border border-amber-100">
+                    <Link key={r.id} href={r.case_id ? `/followup/${r.case_id}` : "/check"} className="block p-3.5 rounded-[16px] bg-amber-50 border border-amber-100 transition-colors hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue">
                       <div className="text-sm text-[#374151] mb-1">{r.message}</div>
-                      <div className="text-xs text-amber-600 flex items-center gap-1.5">
+                      <div className="text-xs text-amber-700 flex items-center gap-1.5">
                         <Clock className="w-3 h-3" aria-hidden="true" />
                         {format(parseISO(r.due_at), "EEE, MMM d 'at' h:mm a")}
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
