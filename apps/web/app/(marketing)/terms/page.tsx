@@ -1,3 +1,4 @@
+import { TriangleAlert } from "lucide-react";
 import { Metadata } from "next";
 import { FadeIn } from "@/components/motion/FadeIn";
 
@@ -48,7 +49,7 @@ export default function TermsPage() {
 
         <FadeIn delay={0.02}>
           <div className="rounded-[20px] bg-amber-50 border border-amber-200 p-4 mb-8 flex items-start gap-3">
-            <span className="text-xl" aria-hidden="true">⚠️</span>
+            <TriangleAlert className="h-5 w-5 flex-shrink-0 text-amber-700 mt-0.5" aria-hidden="true" />
             <p className="text-sm text-amber-900 leading-relaxed">
               <strong>Important:</strong> BridgeCare is not a medical provider.
               For emergencies, call <a href="tel:911" className="font-bold underline">911</a>.

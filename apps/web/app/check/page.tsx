@@ -131,7 +131,7 @@ function CheckInner() {
                               type="button"
                               onClick={() => setAgeRange(value)}
                               className={cn(
-                                "py-2.5 px-3 rounded-[16px] text-sm font-medium border transition-all duration-[180ms]",
+                                "py-2.5 px-3 rounded-[16px] text-sm font-medium border transition duration-[180ms]",
                                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                                 ageRange === value
                                   ? "bg-[#0077b6] text-white border-[#0077b6]"
@@ -174,13 +174,13 @@ function CheckInner() {
                         <span className="text-[#6b7280] font-normal">{t.insuranceHint}</span>
                       </legend>
                       <div className="space-y-2">
-                        {INSURANCE_STATUS.map(({ value, label, icon }) => (
+                        {INSURANCE_STATUS.map(({ value, label, icon: Icon }) => (
                           <button
                             key={value}
                             type="button"
                             onClick={() => setInsurance(value)}
                             className={cn(
-                              "w-full flex items-center gap-3 px-4 py-3.5 rounded-[16px] border text-sm text-left transition-all duration-[180ms]",
+                              "w-full flex items-center gap-3 px-4 py-3.5 rounded-[16px] border text-sm text-left transition duration-[180ms]",
                               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                               insurance === value
                                 ? "bg-[#f3fbfd] border-[#0077b6] text-[#03045e] font-semibold"
@@ -188,7 +188,7 @@ function CheckInner() {
                             )}
                             aria-pressed={insurance === value}
                           >
-                            <span aria-hidden="true">{icon}</span>
+                            <Icon className="w-5 h-5 flex-shrink-0 text-[#0077b6]" aria-hidden="true" />
                             {insuranceLabel(language, value, label)}
                             {insurance === value && (
                               <ChevronRight className="w-4 h-4 text-[#0077b6] ml-auto" aria-hidden="true" />
@@ -215,7 +215,7 @@ function CheckInner() {
                               type="button"
                               onClick={() => setLanguage(value)}
                               className={cn(
-                                "py-2.5 px-3 rounded-[16px] text-sm font-medium border transition-all duration-[180ms]",
+                                "py-2.5 px-3 rounded-[16px] text-sm font-medium border transition duration-[180ms]",
                                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                                 language === value
                                   ? "bg-[#0077b6] text-white border-[#0077b6]"
@@ -243,7 +243,8 @@ function CheckInner() {
                             <label key={key} className="flex items-center gap-3 cursor-pointer group">
                               <div
                                 className={cn(
-                                  "w-10 h-6 rounded-full border transition-all duration-[180ms] relative flex-shrink-0",
+                                  "w-10 h-6 rounded-full border transition duration-[180ms] relative flex-shrink-0",
+                                  "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#0077b6] has-[:focus-visible]:ring-offset-2",
                                   accessibility[key as keyof typeof accessibility]
                                     ? "bg-[#0077b6] border-[#0077b6]"
                                     : "bg-[#e5e7eb] border-[#d1d5db]"
@@ -251,12 +252,13 @@ function CheckInner() {
                               >
                                 <div
                                   className={cn(
-                                    "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all duration-[180ms]",
-                                    accessibility[key as keyof typeof accessibility] ? "left-4" : "left-0.5"
+                                    "absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-[180ms]",
+                                    accessibility[key as keyof typeof accessibility] && "translate-x-4"
                                   )}
                                 />
                                 <input
                                   type="checkbox"
+                                  role="switch"
                                   className="sr-only"
                                   checked={!!accessibility[key as keyof typeof accessibility]}
                                   onChange={(e) => setAccessibility((a) => ({ ...a, [key]: e.target.checked }))}
@@ -279,13 +281,13 @@ function CheckInner() {
                         {t.modeLegend}
                       </legend>
                       <div className="space-y-3">
-                        {CARE_MODES.map(({ value, icon }) => (
+                        {CARE_MODES.map(({ value, icon: Icon }) => (
                           <button
                             key={value}
                             type="button"
                             onClick={() => setMode(value as "quick" | "guided")}
                             className={cn(
-                              "w-full flex items-start gap-4 p-5 rounded-[20px] border text-left transition-all duration-[180ms]",
+                              "w-full flex items-start gap-4 p-5 rounded-[20px] border text-left transition duration-[180ms]",
                               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                               mode === value
                                 ? "bg-[#f3fbfd] border-[#0077b6] shadow-card"
@@ -293,7 +295,7 @@ function CheckInner() {
                             )}
                             aria-pressed={mode === value}
                           >
-                            <span className="text-2xl flex-shrink-0" aria-hidden="true">{icon}</span>
+                            <Icon className="w-6 h-6 flex-shrink-0 text-[#0077b6] mt-0.5" aria-hidden="true" />
                             <div>
                               <div className={cn("font-semibold text-sm", mode === value ? "text-[#03045e]" : "text-[#374151]")}>
                                 {careModeCopy(language, value as "quick" | "guided").label}
@@ -356,10 +358,10 @@ function CheckInner() {
                 onClick={handleContinue}
                 className="btn-primary"
                 aria-label={
-                  step === 1 ? t.ariaNext1 :
-                  step === 2 ? t.ariaNext2 :
-                  step === 3 ? t.ariaNext3 :
-                  t.ariaNext4
+                  step === 1 ? `${t.nextStep}: ${t.ariaNext1}` :
+                  step === 2 ? `${t.nextStep}: ${t.ariaNext2}` :
+                  step === 3 ? `${t.nextStep}: ${t.ariaNext3}` :
+                  undefined
                 }
               >
                 {step === TOTAL_STEPS ? t.startCheck : t.nextStep}

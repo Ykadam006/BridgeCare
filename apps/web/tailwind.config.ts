@@ -41,6 +41,10 @@ const config: Config = {
       spacing: {
         section: "72px",
       },
+      // body has pb-16 for the fixed mobile nav; subtract it so short pages don't scroll 64px
+      minHeight: {
+        screen: "calc(100dvh - var(--mobile-nav-h))",
+      },
       height: {
         input: "52px",
         button: "48px",

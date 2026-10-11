@@ -1,3 +1,5 @@
+import { Users, GraduationCap, Hospital, Shield, Briefcase, Wallet, CircleHelp, Zap, Compass } from "lucide-react";
+
 export const AGE_RANGES = [
   { value: "13-17", label: "13–17" },
   { value: "18-24", label: "18–24" },
@@ -8,13 +10,13 @@ export const AGE_RANGES = [
 ] as const;
 
 export const INSURANCE_STATUS = [
-  { value: "parent-plan", label: "On parent's plan", icon: "👨‍👩‍👧" },
-  { value: "student-plan", label: "Student health plan", icon: "🎓" },
-  { value: "marketplace", label: "Marketplace / ACA plan", icon: "🏥" },
-  { value: "medicaid", label: "Medicaid / CHIP", icon: "🛡️" },
-  { value: "employer", label: "Employer plan", icon: "💼" },
-  { value: "uninsured", label: "No insurance", icon: "💸" },
-  { value: "unsure", label: "Not sure", icon: "🤔" },
+  { value: "parent-plan", label: "On parent's plan", icon: Users },
+  { value: "student-plan", label: "Student health plan", icon: GraduationCap },
+  { value: "marketplace", label: "Marketplace / ACA plan", icon: Hospital },
+  { value: "medicaid", label: "Medicaid / CHIP", icon: Shield },
+  { value: "employer", label: "Employer plan", icon: Briefcase },
+  { value: "uninsured", label: "No insurance", icon: Wallet },
+  { value: "unsure", label: "Not sure", icon: CircleHelp },
 ] as const;
 
 export const LANGUAGES = [
@@ -33,13 +35,13 @@ export const CARE_MODES = [
     value: "quick",
     label: "Quick answer",
     description: "Just tell me what to do",
-    icon: "⚡",
+    icon: Zap,
   },
   {
     value: "guided",
     label: "Walk me through it",
     description: "Explain things as we go",
-    icon: "🧭",
+    icon: Compass,
   },
 ] as const;
 

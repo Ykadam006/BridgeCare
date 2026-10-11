@@ -74,7 +74,7 @@ export default function FollowupPage({ params }: { params: Promise<{ caseId: str
                         type="button"
                         onClick={() => setGotCare(value)}
                         className={cn(
-                          "py-3 px-4 rounded-[16px] border text-sm font-semibold transition-all duration-[180ms]",
+                          "py-3 px-4 rounded-[16px] border text-sm font-semibold transition duration-[180ms]",
                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                           gotCare === value
                             ? "bg-[#0077b6] text-white border-[#0077b6]"
@@ -102,7 +102,7 @@ export default function FollowupPage({ params }: { params: Promise<{ caseId: str
                         type="button"
                         onClick={() => setFeeling(value)}
                         className={cn(
-                          "w-full flex items-center gap-3 py-3.5 px-4 rounded-[16px] border text-left transition-all duration-[180ms]",
+                          "w-full flex items-center gap-3 py-3.5 px-4 rounded-[16px] border text-left transition duration-[180ms]",
                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]",
                           feeling === value ? activeBg : bg + " hover:brightness-95"
                         )}
@@ -133,8 +133,8 @@ export default function FollowupPage({ params }: { params: Promise<{ caseId: str
                   placeholder="e.g. 'I got antibiotics', 'Still have the headache', 'Feeling much better'"
                   rows={3}
                   className={cn(
-                    "w-full rounded-[20px] border border-[#d1d5db] bg-white px-4 py-3.5 text-sm text-[#111827]",
-                    "placeholder-[#9ca3af] resize-none transition-all duration-[180ms]",
+                    "w-full rounded-[20px] border border-[#d1d5db] bg-white px-4 py-3.5 text-base text-[#111827]",
+                    "placeholder-[#9ca3af] resize-none transition duration-[180ms]",
                     "focus:outline-none focus:ring-2 focus:ring-[#0077b6] focus:border-[#0077b6]",
                     "hover:border-[#00b4d8]"
                   )}

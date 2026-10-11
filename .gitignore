@@ -23,6 +23,8 @@ out/
 
 # Testing
 coverage/
+# the app's /coverage route is source, not a test report
+!apps/web/app/coverage/
 .pytest_cache/
 htmlcov/
 

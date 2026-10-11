@@ -100,7 +100,7 @@ export default function CareOptionsClient({ caseId }: { caseId: string }) {
     return (
       <div className="min-h-screen bg-[#f3fbfd]">
         <Nav />
-        <div className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-8" aria-busy="true">
+        <div className="mx-auto w-full max-w-[1200px] px-4 py-16 sm:px-6" aria-busy="true">
           <div className="h-10 w-48 animate-pulse rounded-2xl bg-[#e5e7eb]" />
           <div className="mt-8 h-64 w-full animate-pulse rounded-3xl bg-[#e5e7eb]/80" />
           <div className="mt-8 space-y-4">
@@ -117,7 +117,7 @@ export default function CareOptionsClient({ caseId }: { caseId: string }) {
       <Nav />
       <main
         id="main-content"
-        className="mx-auto w-full max-w-[1400px] px-4 pb-16 pt-8 sm:px-8 lg:px-10 lg:pb-24 lg:pt-10"
+        className="mx-auto w-full max-w-[1200px] px-4 pb-16 pt-8 sm:px-6 lg:pb-24 lg:pt-10"
         tabIndex={-1}
       >
         <FadeIn>
@@ -151,8 +151,8 @@ export default function CareOptionsClient({ caseId }: { caseId: string }) {
             >
               <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex min-w-0 items-start gap-4">
-                  <span className="select-none text-5xl sm:text-6xl" aria-hidden>
-                    {cue.emoji}
+                  <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/80 shadow-card sm:h-20 sm:w-20">
+                    <cue.icon className="h-8 w-8 text-[#0077b6] sm:h-10 sm:w-10" strokeWidth={1.75} aria-hidden />
                   </span>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-[#0077b6]">{cue.label}</p>
@@ -296,7 +296,7 @@ export default function CareOptionsClient({ caseId }: { caseId: string }) {
                         <a
                           href={`tel:${DEMO_TELE_PHONE.replace(/\D/g, "")}`}
                           className="btn-primary inline-flex !h-12 !px-8 !text-base"
-                          aria-label={`Call telehealth demo line ${DEMO_TELE_PHONE}`}
+                          aria-label={`Call now: telehealth demo line ${DEMO_TELE_PHONE}`}
                         >
                           <Phone className="h-5 w-5" aria-hidden />
                           Call now

@@ -338,7 +338,7 @@ export function CareOptionsMap({
                 <span className="sr-only">Show road route to</span>
                 <select
                   id="care-map-route-to"
-                  className="min-w-0 flex-1 rounded-xl border border-[#e5e7eb] bg-white px-2.5 py-1.5 text-xs font-semibold text-[#374151] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]"
+                  className="min-w-0 flex-1 rounded-xl border border-[#e5e7eb] min-h-[44px] bg-white px-2.5 py-1.5 text-base font-semibold sm:min-h-0 sm:text-xs text-[#374151] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6]"
                   value={routeTarget?.id ?? ""}
                   onChange={(e) => {
                     const id = e.target.value;

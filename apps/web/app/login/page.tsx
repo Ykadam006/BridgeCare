@@ -35,7 +35,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div id="main-content" className="min-h-screen bg-[#f3fbfd] flex flex-col items-center justify-center px-6" tabIndex={-1}>
+    <main id="main-content" className="min-h-screen bg-[#f3fbfd] flex flex-col items-center justify-center px-6" tabIndex={-1}>
 
       {/* Logo */}
       <Link
@@ -94,7 +94,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full h-[52px] pl-10 pr-4 rounded-[16px] border border-[#e5e7eb] bg-white text-sm text-[#374151] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#0077b6]/30 focus:border-[#0077b6] transition-all"
+                    className="w-full h-[52px] pl-10 pr-4 rounded-[16px] border border-[#e5e7eb] bg-white text-base text-[#374151] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#0077b6]/30 focus:border-[#0077b6] transition"
                   />
                 </div>
               </div>
@@ -149,6 +149,6 @@ export default function LoginPage() {
       <p className="mt-10 text-xs text-[#6b7280] text-center max-w-xs">
         BridgeCare is for guidance only — not medical advice. In an emergency, call 911.
       </p>
-    </div>
+    </main>
   );
 }

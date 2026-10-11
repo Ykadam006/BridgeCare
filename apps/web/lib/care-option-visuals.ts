@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Clock, MapPin, Monitor, Phone, Stethoscope, Building2, Ambulance, Pill } from "lucide-react";
+import { Clock, MapPin, Monitor, Phone, Stethoscope, Building2, Ambulance, Pill, HeartPulse, Brain, Thermometer, Wind, Droplets } from "lucide-react";
 
 export function careOptionIcon(type: string): LucideIcon {
   const t = type.toLowerCase();
@@ -57,19 +57,19 @@ export function careOptionActionSteps(type: string): string[] {
   ];
 }
 
-export function symptomVisualCue(chiefComplaint: string): { emoji: string; label: string; tint: string } {
+export function symptomVisualCue(chiefComplaint: string): { icon: LucideIcon; label: string; tint: string } {
   const s = chiefComplaint.toLowerCase();
   if (/(chest|heart|palpitation|tight)/.test(s))
-    return { emoji: "💓", label: "Chest / heart symptoms", tint: "from-rose-100/80 to-[#caf0f8]" };
+    return { icon: HeartPulse, label: "Chest / heart symptoms", tint: "from-rose-100/80 to-[#caf0f8]" };
   if (/(head|migraine)/.test(s))
-    return { emoji: "🧠", label: "Head symptoms", tint: "from-violet-100/70 to-[#caf0f8]" };
+    return { icon: Brain, label: "Head symptoms", tint: "from-violet-100/70 to-[#caf0f8]" };
   if (/(throat|cough|cold|flu|fever|congestion)/.test(s))
-    return { emoji: "🌡️", label: "Cold / flu–like", tint: "from-sky-100/70 to-[#caf0f8]" };
+    return { icon: Thermometer, label: "Cold / flu–like", tint: "from-sky-100/70 to-[#caf0f8]" };
   if (/(stomach|nausea|vomit|diarrhea|abdomen|belly)/.test(s))
-    return { emoji: "💊", label: "Stomach / gut", tint: "from-amber-100/70 to-[#caf0f8]" };
+    return { icon: Pill, label: "Stomach / gut", tint: "from-amber-100/70 to-[#caf0f8]" };
   if (/(anxiety|panic|sleep|stress|dizzy)/.test(s))
-    return { emoji: "✨", label: "Nervous system / stress", tint: "from-teal-100/80 to-[#caf0f8]" };
+    return { icon: Wind, label: "Nervous system / stress", tint: "from-teal-100/80 to-[#caf0f8]" };
   if (/(rash|skin|itch|hive)/.test(s))
-    return { emoji: "🧴", label: "Skin", tint: "from-emerald-100/70 to-[#caf0f8]" };
-  return { emoji: "🩺", label: "Your check-in", tint: "from-[#90e0ef]/40 to-[#caf0f8]" };
+    return { icon: Droplets, label: "Skin", tint: "from-emerald-100/70 to-[#caf0f8]" };
+  return { icon: Stethoscope, label: "Your check-in", tint: "from-[#90e0ef]/40 to-[#caf0f8]" };
 }

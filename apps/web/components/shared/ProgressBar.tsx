@@ -50,7 +50,7 @@ export function StepDots({ current, total, className }: StepDotsProps) {
           role="listitem"
           aria-label={`Step ${i + 1}${i + 1 === current ? " (current)" : i + 1 < current ? " (completed)" : ""}`}
           className={cn(
-            "rounded-full transition-all duration-[240ms]",
+            "rounded-full transition-[width,background-color] duration-[240ms]",
             i + 1 < current
               ? "w-2 h-2 bg-[#0077b6]"
               : i + 1 === current

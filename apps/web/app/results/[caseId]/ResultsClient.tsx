@@ -123,7 +123,7 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
       <div className="min-h-screen bg-[#f3fbfd]">
         <Nav />
         <div
-          className="mx-auto w-full max-w-[1400px] space-y-6 px-4 py-10 sm:px-8 lg:px-10"
+          className="mx-auto w-full max-w-[1200px] space-y-6 px-4 py-10 sm:px-6"
           aria-busy="true"
           aria-label="Loading your result"
         >
@@ -166,7 +166,7 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
   const whyOptions = caseData.care_options.filter((o) => o.why_this_fits).slice(0, 3);
   const nextOptions = caseData.care_options.slice(0, 3);
 
-  const pageShell = "mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-8 lg:px-10 lg:py-12";
+  const pageShell = "mx-auto w-full max-w-[1200px] px-4 py-8 sm:px-6 lg:py-12";
 
   /* ── Render ───────────────────────────────────────────────────────────────── */
   return (
@@ -201,8 +201,8 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
           >
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
               <div className="flex min-w-0 flex-1 items-start gap-5">
-                <span className="select-none text-6xl sm:text-7xl" aria-hidden>
-                  {cue.emoji}
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/80 shadow-card sm:h-20 sm:w-20">
+                  <cue.icon className="h-8 w-8 text-[#0077b6] sm:h-10 sm:w-10" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs font-bold uppercase tracking-widest text-[#0077b6]">Your check-in</p>
@@ -284,7 +284,7 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
                   {isCritical ? (
                     <a
                       href="tel:911"
-                      className="flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 py-4 text-lg font-bold text-white transition-all hover:bg-red-700"
+                      className="flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 py-4 text-lg font-bold text-white transition hover:bg-red-700"
                       aria-label="Call 911 — this is an emergency"
                     >
                       <Siren className="h-6 w-6" aria-hidden="true" />
@@ -294,7 +294,7 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
                     <Link
                       href={`/options/${caseId}`}
                       className={cn(
-                        "flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-lg font-bold shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg",
+                        "flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-lg font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg",
                         cfg.cta
                       )}
                     >
@@ -449,7 +449,7 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
 
             <FadeIn delay={0.1}>
               <div className="grid gap-6 lg:grid-cols-2">
-                <div className="surface-tinted flex flex-col justify-between gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:p-8">
+                <div className="surface-tinted flex flex-col justify-between gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:p-8 lg:flex-col lg:items-start">
                   <div className="flex items-start gap-4">
                     <DollarSign className="mt-1 h-7 w-7 flex-shrink-0 text-[#0077b6]" aria-hidden="true" />
                     <div>
@@ -460,12 +460,12 @@ export default function ResultsClient({ caseId }: { caseId: string }) {
                   <Link
                     href={`/coverage/${caseId}`}
                     className="btn-secondary !h-12 flex-shrink-0 !px-6 !text-base"
-                    aria-label="Understand your cost and coverage options"
+                    aria-label="Coverage help: understand your cost and coverage options"
                   >
                     Coverage help
                   </Link>
                 </div>
-                <div className="surface flex flex-col justify-between gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:p-8">
+                <div className="surface flex flex-col justify-between gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:p-8 lg:flex-col lg:items-start">
                   <div className="flex items-center gap-4">
                     <Clock className="h-7 w-7 flex-shrink-0 text-[#0077b6]" aria-hidden="true" />
                     <div>
